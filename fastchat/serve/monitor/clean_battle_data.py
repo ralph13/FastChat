@@ -117,11 +117,6 @@ def replace_model_name(old_name, tstamp):
             return old_name + "-0613"
         else:
             return old_name + "-0314"
-    if old_name in ["gemini-pro-dev-api"]:
-        if tstamp > 1713214200:
-            return "gemini-1.5-pro-api-0409-preview"
-        else:
-            return "gemini-pro-dev-api"
     if old_name in replace_dict:
         return replace_dict[old_name]
     return old_name
