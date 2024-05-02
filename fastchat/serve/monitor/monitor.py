@@ -426,6 +426,7 @@ if __name__ == "__main__":
     parser.add_argument("--leaderboard-table-file", type=str)
     parser.add_argument("--ban-ip-file", type=str)
     parser.add_argument("--exclude-model-names", type=str, nargs="+")
+    parser.add_argument("--password", type=str)
     args = parser.parse_args()
 
     logger = build_logger("monitor", "monitor.log")
@@ -450,5 +451,6 @@ if __name__ == "__main__":
         status_update_rate=10,
         api_open=False,
     ).launch(
-        server_name=args.host, server_port=args.port, share=args.share, max_threads=200
+        server_name=args.host, server_port=args.port, share=args.share, max_threads=200,
+        auth=(args.password, args.password) if args.password else None
     )

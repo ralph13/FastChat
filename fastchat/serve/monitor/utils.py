@@ -8,6 +8,15 @@ from tqdm import tqdm
 from nltk.tokenize import word_tokenize
 
 
+def contain_refusal(conv) -> bool:
+    keywords = ["I'm sorry", "I cannot answer", "I apologize", "抱歉", "对不起", "Извините"]
+    for turn in conv:
+        if turn["role"] == "user":
+            continue
+        if any([kw in turn["content"] for kw in keywords]):
+            return True
+    return False
+
 def is_code_conversation(text: str) -> tuple[bool, list[str]]:
     """Check if the text is a code conversation"""
 
