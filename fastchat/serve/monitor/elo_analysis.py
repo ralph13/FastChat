@@ -416,8 +416,9 @@ def filter_long_conv(row):
 def filter_long_user_query(row):
     threshold = 500
     if row["num_tokens_info"]["user_tokens"] >= threshold:
-            return True
+        return True
     return False
+
 
 def report_elo_analysis_results(
     battles_json,
@@ -476,7 +477,9 @@ def report_elo_analysis_results(
 
     if rating_system == "bt":
         bootstrap_df = get_bootstrap_result(
-            battles, compute_elo_mle_with_tie, num_round=num_bootstrap,
+            battles,
+            compute_elo_mle_with_tie,
+            num_round=num_bootstrap,
         )
         elo_rating_final = compute_elo_mle_with_tie(battles)
     elif rating_system == "elo":
@@ -611,7 +614,8 @@ if __name__ == "__main__":
             "filter_func": lambda x: x["language"] == "English",
         },
         "english_new": {
-            "filter_func": lambda x: x["language"] == "English" and x["num_tokens_info"]["user_tokens"] >= 3,
+            "filter_func": lambda x: x["language"] == "English"
+            and x["num_tokens_info"]["user_tokens"] >= 3,
         },
         "french": {
             "filter_func": lambda x: x["language"] == "French",
@@ -639,7 +643,7 @@ if __name__ == "__main__":
         "english_limit_5_user_vote": {
             "filter_func": lambda x: x["language"] == "English",
             "daily_vote_per_user": 5,
-        }
+        },
     }
     assert all(
         [cat in category_config_map for cat in args.category]
@@ -660,7 +664,7 @@ if __name__ == "__main__":
             "scale": args.scale,
             "filter_func": lambda x: True,
         }
-        
+
         # overwrite default kwargs with category specific kwargs
         if cat in category_config_map:
             kwargs_default.update(category_config_map[cat])

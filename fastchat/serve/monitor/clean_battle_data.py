@@ -315,7 +315,9 @@ def process_data(
                 encoding.encode(conv["content"], allowed_special="all")
             )
 
-        user_tokens = sum([conv["num_tokens"] for conv in conversation_a if conv["role"] == "user"])
+        user_tokens = sum(
+            [conv["num_tokens"] for conv in conversation_a if conv["role"] == "user"]
+        )
         context_tokens_a = sum([conv["num_tokens"] for conv in conversation_a[:-1]])
         context_tokens_b = sum([conv["num_tokens"] for conv in conversation_b[:-1]])
         num_tokens_info = {
@@ -442,11 +444,11 @@ if __name__ == "__main__":
                 continue
             new_battles.append(x)
         output = f"clean_battle_conv_{cutoff_date}.json"
-        
+
         with open(output, "w", encoding="utf-8", errors="replace") as fout:
             json.dump(new_battles, fout, indent=2, ensure_ascii=False)
         print(f"Write cleaned data to {output}")
-    
+
     for x in battles:
         for key in [
             "conversation_a",

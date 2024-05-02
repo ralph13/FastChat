@@ -17,6 +17,7 @@ def contain_refusal(conv) -> bool:
             return True
     return False
 
+
 def is_code_conversation(text: str) -> tuple[bool, list[str]]:
     """Check if the text is a code conversation"""
 

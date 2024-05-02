@@ -451,6 +451,9 @@ if __name__ == "__main__":
         status_update_rate=10,
         api_open=False,
     ).launch(
-        server_name=args.host, server_port=args.port, share=args.share, max_threads=200,
-        auth=(args.password, args.password) if args.password else None
+        server_name=args.host,
+        server_port=args.port,
+        share=args.share,
+        max_threads=200,
+        auth=(args.password, args.password) if args.password else None,
     )
